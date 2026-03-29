@@ -2,7 +2,6 @@
 Comprehensive Unit Test Suite for Django Package Cookiecutter Template
 """
 
-import os
 import sys
 import json
 import shutil
@@ -10,12 +9,7 @@ import subprocess
 import tempfile
 import pytest
 from pathlib import Path
-from typing import Dict, Any
-
-
-# =============================================================================
-# FIXTURES
-# =============================================================================
+from typing import Dict, Any, Generator
 
 
 @pytest.fixture(scope="module")
@@ -33,7 +27,7 @@ def cookiecutter_json(template_dir: Path) -> Dict[str, Any]:
 
 
 @pytest.fixture(scope="function")
-def temp_dir() -> Path:
+def temp_dir() -> Generator[Path, None, None]:
     """Create a temporary directory for test outputs."""
     tmpdir = tempfile.mkdtemp()
     yield Path(tmpdir)
