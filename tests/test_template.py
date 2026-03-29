@@ -2,6 +2,7 @@
 Comprehensive Unit Test Suite for Django Package Cookiecutter Template
 """
 
+import os
 import sys
 import json
 import shutil
@@ -10,6 +11,7 @@ import tempfile
 import pytest
 from pathlib import Path
 from typing import Dict, Any, Generator
+import tomli
 
 
 @pytest.fixture(scope="module")
@@ -207,6 +209,54 @@ class TestCookiecutterConfiguration:
         licenses = cookiecutter_json["license"]
         assert isinstance(licenses, list), "License must be a list of options"
         assert len(licenses) >= 1, "Should have at least 1 license option"
+
+
+class TestGeneratedProjectValidity:
+    """Test generated project files are valid."""
+
+    def test_pyproject_toml_valid(self, generated_project: Path):
+        """Verify pyproject.toml is valid TOML."""
+        pyproject = generated_project / "pyproject.toml"
+        with open(pyproject, "rb") as f:
+            data = tomli.load(f)
+        assert "project" in data, "Missing [project] section"
+        assert "name" in data["project"], "Missing project name"
+        # Verify name is not a template variable
+        name = data["project"]["name"]
+        assert "{{" not in name, f"Template variable not rendered: {name}"
+        assert "cookiecutter" not in name.lower(), (
+            f"Template variable not rendered: {name}"
+        )
+
+    def test_demo_project_check(self, generated_project: Path):
+        """Verify demo project passes Django check."""
+        demo_dir = generated_project / "demo_project"
+        env = os.environ.copy()
+        env["PYTHONPATH"] = str(generated_project / "src")
+
+        result = subprocess.run(
+            [sys.executable, "manage.py", "check"],
+            cwd=demo_dir,
+            env=env,
+            capture_output=True,
+            text=True,
+        )
+        assert result.returncode == 0, f"Django check failed: {result.stderr}"
+
+    def test_demo_project_migrate(self, generated_project: Path):
+        """Verify demo project migrations work."""
+        demo_dir = generated_project / "demo_project"
+        env = os.environ.copy()
+        env["PYTHONPATH"] = str(generated_project / "src")
+
+        result = subprocess.run(
+            [sys.executable, "manage.py", "migrate", "--run-syncdb"],
+            cwd=demo_dir,
+            env=env,
+            capture_output=True,
+            text=True,
+        )
+        assert result.returncode == 0, f"Migrations failed: {result.stderr}"
 
 
 # =============================================================================

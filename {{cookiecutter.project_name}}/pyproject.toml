@@ -3,41 +3,23 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "{ cookiecutter.package_name }"
-version = "{ cookiecutter.version }"
-description = "{ cookiecutter.description }"
+name = "{{ cookiecutter.package_name }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.description }}"
 authors = [
-    { name = "{ cookiecutter.author_name }", email = "{ cookiecutter.author_email }" },
+    { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
 ]
-license = { text = "{ cookiecutter.license }" }
+license = { text = "{{ cookiecutter.license }}" }
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = ["Django>=5.2"]
 
-[project.optional-dependencies]
-dev = ["pytest", "pytest-django", "black", "flake8", "pre-commit"]
+[dependency-groups]
+dev = ["pytest", "pytest-django", "ruff"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.black]
+[tool.ruff]
 line-length = 88
-target-version = ['py38', 'py39', 'py310', 'py311']
-
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "{ cookiecutter.demo_project_name }.settings"
-python_files = ["tests.py", "test_*.py", "*_tests.py"]
-addopts = "-v --tb=short"
-
-[tool.coverage.run]
-source = ["src"]
-branch = true
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if __name__ == .__main__.:",
-]
+target-version = "py38"
