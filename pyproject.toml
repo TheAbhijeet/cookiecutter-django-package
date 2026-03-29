@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "cookiecutter-django-package"
 authors = [{ name = "Abhijeet pal", email = "no.email@example.com" }]
@@ -5,6 +9,13 @@ version = "0.1.0"
 description = "A cookiecutter template for creating Django packages."
 readme = "README.md"
 requires-python = ">=3.12"
+classifiers = [
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
 dependencies = []
 
 
@@ -12,7 +23,10 @@ dependencies = []
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
-addopts = "-v --tb=short"
+addopts = "-v --tb=short -m 'not integration'"
+markers = [
+    "integration: marks tests as integration tests (deselect with '-m \"not integration\"')",
+]
 
 [tool.coverage.run]
 source = ["hooks"]
@@ -35,4 +49,13 @@ dev = [
     "pre-commit>=4.5.1",
     "prek>=0.3.8",
     "tomli>=2.4.1",
+    "build>=1.2.2",
+    "twine>=6.1.0",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["hooks", "extensions"]
+
+
+[tool.hatch.build.targets.sdist]
+exclude = ["/.github", "/.venv", "/tests", "/__pycache__"]

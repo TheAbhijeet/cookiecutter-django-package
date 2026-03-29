@@ -1,25 +1,67 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "{{ cookiecutter.package_name }}"
 version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.description }}"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "{{ cookiecutter.license }}" }
 authors = [
     { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
 ]
-license = { text = "{{ cookiecutter.license }}" }
-readme = "README.md"
-requires-python = ">=3.8"
-dependencies = ["Django>=5.2"]
+
+classifiers = [
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: {{ cookiecutter.license }} License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "Django>=5.2",
+{% if cookiecutter.include_drf == 'True' %}
+    "djangorestframework>=3.14",
+{% endif %}
+{% if cookiecutter.include_celery == 'True' %}
+    "celery>=5.3",
+{% endif %}
+]
+
+[project.urls]
+Repository = "https://github.com/{{ cookiecutter.author_name }}/{{ cookiecutter.package_name }}"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-django>=4.5", "build>=1.2.2", "twine>=6.1.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/{{ cookiecutter.package_name }}"]
+
+[tool.hatch.build]
+ignore-vcs = false
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/demo_project",
+    "/tests",
+    "/.github",
+    "/.venv",
+    "/docs",
+    "pytest.ini",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "{{ cookiecutter.demo_project_name }}.settings"
+pythonpath = [".", "demo_project"]
+python_files = ["test_*.py"]
 
 [dependency-groups]
-dev = ["pytest", "pytest-django", "ruff"]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.ruff]
-line-length = 88
-target-version = "py38"
+dev = [
+    "pytest>=7.0",
+    "pytest-django>=4.5",
+    "build>=1.2.2",
+    "twine>=6.1.0",
+    "ruff>=0.1.0",
+]
