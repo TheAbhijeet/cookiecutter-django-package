@@ -14,7 +14,8 @@ Make sure to have the following on your host:
 Generate a new Django package:
 
 ```bash
-cookiecutter gh:your-username/cookiecutter-django-package
+uv tool install cookiecutter
+cookiecutter gh:TheAbhijeet/cookiecutter-django-package
 ```
 
 Set up the generated project:
