@@ -1,7 +1,8 @@
 [project]
 name = "cookiecutter-django-package"
+authors = [{ name = "Abhijeet pal", email = "no.email@example.com" }]
 version = "0.1.0"
-description = "Add your description here"
+description = "A cookiecutter template for creating Django packages."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
