@@ -1,39 +1,39 @@
-# { { cookiecutter.project_name } }
+# {{ cookiecutter.project_name }}
 
-{ { cookiecutter.description } }
+{{ cookiecutter.description }}
 
-[![PyPI](https://img.shields.io/pypi/v/{ { cookiecutter.package_name } }.svg)](https://pypi.org/project/{ { cookiecutter.package_name } }/))
-[![License](https://img.shields.io/pypi/l/{ { cookiecutter.package_name } }.svg)](https://pypi.org/project/{ { cookiecutter.package_name } }/))
+[![PyPI](https://img.shields.io/pypi/v/{{ cookiecutter.package_name }}.svg)](https://pypi.org/project/{{ cookiecutter.package_name }}/))
+[![License](https://img.shields.io/pypi/l/{{ cookiecutter.package_name }}.svg)](https://pypi.org/project/{{ cookiecutter.package_name }}/))
 
 ## Installation
 
 ```bash
-pip install { { cookiecutter.package_name } }
+pip install {{ cookiecutter.package_name }}
 ```
 
 ## Development Setup
 
 ### 1. Clone and Enter Directory
 ```bash
-cd { { cookiecutter.project_name } }
+cd {{ cookiecutter.project_name }}
 ```
 
 ### 2. Create Virtual Environment
 **Windows (PowerShell):**
 ```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
+uv sync
+uv sync
 ```
 
 **macOS/Linux:**
 ```bash
-python -m venv venv
-source venv/bin/activate
+uv sync
+uv sync
 ```
 
 ### 3. Install Package
 ```bash
-pip install -e src/
+uv sync --group dev
 ```
 
 ### 4. Run example_project
@@ -45,25 +45,25 @@ python manage.py runserver
 
 ### 5. Run Tests
 ```bash
-pytest
+uv run pytest
 ```
 
 ## Publishing to PyPI
 
 ### 1. Build
 ```bash
-pip install build twine
-python -m build
+uv pip install build twine
+uv run python -m build
 ```
 
 ### 2. TestPyPI
 ```bash
-twine upload --repository testpypi dist/*
+uv run twine upload --repository testpypi dist/*
 ```
 
 ### 3. PyPI
 ```bash
-twine upload dist/*
+uv run twine upload dist/*
 ```
 
 ## Documentation
@@ -76,4 +76,4 @@ See `CONTRIBUTING.md` for guidelines.
 
 ## License
 
-{ { cookiecutter.license } }
+{{ cookiecutter.license }}
