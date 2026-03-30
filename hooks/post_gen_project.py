@@ -27,8 +27,6 @@ def main():
     if "{{ cookiecutter.include_templates }}" == "False":
         delete_directory("src/{{ cookiecutter.package_name }}/templates")
 
-    if "{{ cookiecutter.include_demo }}" == "False":
-        delete_directory("demo_project")
 
     print("Post-generation cleanup completed successfully.")
 

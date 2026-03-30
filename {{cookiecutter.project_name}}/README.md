@@ -36,9 +36,9 @@ source venv/bin/activate
 pip install -e src/
 ```
 
-### 4. Run Demo
+### 4. Run example_project
 ```bash
-cd demo_project
+cd example_project
 python manage.py migrate
 python manage.py runserver
 ```

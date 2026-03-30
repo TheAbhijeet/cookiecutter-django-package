@@ -44,7 +44,7 @@ ignore-vcs = false
 
 [tool.hatch.build.targets.sdist]
 exclude = [
-    "/demo_project",
+    "/example_project",
     "/tests",
     "/.github",
     "/.venv",
@@ -53,8 +53,8 @@ exclude = [
 ]
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "{{ cookiecutter.demo_project_name }}.settings"
-pythonpath = [".", "demo_project"]
+DJANGO_SETTINGS_MODULE = "settings"
+pythonpath = [".", "example_project"]
 python_files = ["test_*.py"]
 
 [dependency-groups]

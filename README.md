@@ -24,14 +24,13 @@ cookiecutter gh:TheAbhijeet/cookiecutter-django-package
 |--------|---------|-------------|
 | `project_name` | `my-django-package` | Full name of your package (kebab-case recommended) |
 | `package_name` | Auto-generated | Python importable name (auto-converted from project_name) |
-| `demo_project_name` | `demo` | Name of the demo Django project for testing |
+| `example_project_name` | `example_project` | Name of the example_project Django project for testing |
 | `author_name` | `Your Name` | Your name for package metadata |
 | `author_email` | `your.email@example.com` | Your email for package metadata |
 | `version` | `0.1.0` | Initial package version (semantic versioning) |
 | `description` | `A reusable Django application.` | Short description for PyPI |
 | `license` | `MIT` | Choose license: MIT, BSD, ISC, Apache-2.0, or GPL-3.0 |
 | `python_env` | `uv` | Package manager: uv (fast) or Poetry |
-| `include_demo` | `True` | Include a demo Django project to test the app immediately [Recommended] |
 | `include_drf` | `False` | Include Django REST Framework serializers and viewsets |
 | `include_celery` | `False` | Include Celery configuration for async tasks |
 | `include_admin_templates` | `False` | Include custom Django admin templates |
@@ -42,8 +41,8 @@ Set up the generated project:
 ```bash
 cd <project_slug>
 uv sync
-uv run python demo_project/manage.py migrate
-uv run python demo_project/manage.py runserver
+uv run python example_project/manage.py migrate
+uv run python example_project/manage.py runserver
 ```
 
 ## Features
@@ -65,7 +64,7 @@ cookiecutter-django-package/
 ├── {{cookiecutter.project_name}}/
 │   ├── src/
 │   ├── tests/
-│   ├── demo_project/
+│   ├── example_project/
 │   ├── docs/
 │   └── pyproject.toml
 ├── tests/
@@ -87,18 +86,6 @@ Run template tests:
 ```bash
 uv run pytest
 ```
-
-## Configuration Options
-
-| Prompt | Default | Description |
-|--------|---------|-------------|
-| `project_name` | `my-django-package` | Package name |
-| `package_name` | Auto-generated | Python import name |
-| `author_name` | `Your Name` | Author |
-| `license` | `MIT` | License type |
-| `include_demo` | `True` | Include demo project |
-| `include_drf` | `False` | Django REST Framework |
-| `include_celery` | `False` | Celery support |
 
 ## License
 

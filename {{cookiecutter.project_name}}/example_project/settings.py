@@ -8,7 +8,7 @@ SRC_DIR = BASE_DIR.parent / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-SECRET_KEY = "django-insecure-change-this-in-demo"
+SECRET_KEY = "BAZ)|a3|:N}Ge*j4]cGO|+Rey{T7f*[]"
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
@@ -32,7 +32,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "{{ cookiecutter.demo_project_name }}.urls"
+ROOT_URLCONF = "urls"
 
 TEMPLATES = [
     {
@@ -50,7 +50,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "{{ cookiecutter.demo_project_name }}.wsgi.application"
+WSGI_APPLICATION = "wsgi.application"
 
 DATABASES = {
     "default": {

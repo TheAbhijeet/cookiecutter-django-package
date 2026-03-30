@@ -43,10 +43,10 @@ class TestGeneratedProjectIntegration:
             check=True,
         )
 
-        demo_dir = generated_project / "demo_project"
+        example_project_dir = generated_project / "example_project"
         result = subprocess.run(
             ["uv", "run", "python", "manage.py", "check"],
-            cwd=demo_dir,
+            cwd=example_project_dir,
             env=env,
             capture_output=True,
             text=True,

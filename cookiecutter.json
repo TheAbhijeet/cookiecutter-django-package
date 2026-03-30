@@ -1,15 +1,25 @@
 {
-  "_extensions": ["extensions.CamelcaseExtension"],
+  "_extensions": [
+    "extensions.CamelcaseExtension"
+  ],
   "project_name": "my-django-package",
   "package_name": "{{ cookiecutter.project_name.lower().replace('-', '_').replace(' ', '_') }}",
-  "demo_project_name": "demo",
+  "example_project_name": "example_project",
   "author_name": "Your Name",
   "author_email": "your.email@example.com",
   "version": "0.1.0",
   "description": "A reusable Django application.",
-  "license": ["MIT", "BSD", "ISC", "Apache-2.0", "GPL-3.0"],
-  "python_env": ["uv", "Poetry"],
-  "include_demo": "True",
+  "license": [
+    "MIT",
+    "BSD",
+    "ISC",
+    "Apache-2.0",
+    "GPL-3.0"
+  ],
+  "python_env": [
+    "uv",
+    "Poetry"
+  ],
   "include_drf": "False",
   "include_celery": "False",
   "include_admin_templates": "False",

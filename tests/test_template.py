@@ -87,9 +87,11 @@ class TestTemplateStructure:
         src_dir = template_dir / "{{cookiecutter.project_name}}" / "src"
         assert src_dir.exists(), "src/ directory not found"
 
-    def test_demo_project_exists(self, template_dir: Path):
-        demo_dir = template_dir / "{{cookiecutter.project_name}}" / "demo_project"
-        assert demo_dir.exists(), "demo_project/ directory not found"
+    def test_example_project_exists(self, template_dir: Path):
+        example_project_dir = (
+            template_dir / "{{cookiecutter.project_name}}" / "example_project"
+        )
+        assert example_project_dir.exists(), "example_project/ directory not found"
 
     def test_hooks_directory_exists(self, template_dir: Path):
         hooks_dir = template_dir / "hooks"
@@ -136,12 +138,12 @@ class TestGeneratedProjectStructure:
         for file in required_files:
             assert (pkg_dir / file).exists(), f"{file} not created"
 
-    def test_demo_project_created(self, generated_project: Path):
-        demo_dir = generated_project / "demo_project"
-        assert demo_dir.exists(), "demo_project/ not created"
+    def test_example_project_created(self, generated_project: Path):
+        example_project_dir = generated_project / "example_project"
+        assert example_project_dir.exists(), "example_project/ not created"
 
     def test_manage_py_exists(self, generated_project: Path):
-        manage_py = generated_project / "demo_project" / "manage.py"
+        manage_py = generated_project / "example_project" / "manage.py"
         assert manage_py.exists(), "manage.py not created"
 
     def test_pyproject_toml_created(self, generated_project: Path):
@@ -172,7 +174,7 @@ class TestGeneratedProjectContent:
         assert "AppConfig" in content, "AppConfig not in apps.py"
 
     def test_settings_includes_package(self, generated_project: Path):
-        settings_file = generated_project / "demo_project" / "demo" / "settings.py"
+        settings_file = generated_project / "example_project" / "settings.py"
         content = settings_file.read_text(encoding="utf-8")
         assert "my_django_package" in content, "Package not in INSTALLED_APPS"
 
@@ -235,23 +237,23 @@ class TestGeneratedProjectValidity:
 
     def test_settings_py_exists(self, generated_project: Path):
         """Verify settings.py exists."""
-        settings_file = generated_project / "demo_project" / "demo" / "settings.py"
+        settings_file = generated_project / "example_project" / "settings.py"
         assert settings_file.exists(), "settings.py not found"
 
     def test_settings_includes_package(self, generated_project: Path):
         """Verify settings.py includes the package."""
-        settings_file = generated_project / "demo_project" / "demo" / "settings.py"
+        settings_file = generated_project / "example_project" / "settings.py"
         content = settings_file.read_text(encoding="utf-8")
         assert "my_django_package" in content, "Package not in INSTALLED_APPS"
 
     def test_manage_py_exists(self, generated_project: Path):
         """Verify manage.py exists."""
-        manage_py = generated_project / "demo_project" / "manage.py"
+        manage_py = generated_project / "example_project" / "manage.py"
         assert manage_py.exists(), "manage.py not found"
 
     def test_manage_py_valid_python(self, generated_project: Path):
         """Verify manage.py is valid Python syntax."""
-        manage_py = generated_project / "demo_project" / "manage.py"
+        manage_py = generated_project / "example_project" / "manage.py"
         result = subprocess.run(
             [sys.executable, "-m", "py_compile", str(manage_py)],
             capture_output=True,
@@ -261,7 +263,7 @@ class TestGeneratedProjectValidity:
 
     def test_settings_py_valid_python(self, generated_project: Path):
         """Verify settings.py is valid Python syntax."""
-        settings_file = generated_project / "demo_project" / "demo" / "settings.py"
+        settings_file = generated_project / "example_project" / "settings.py"
         result = subprocess.run(
             [sys.executable, "-m", "py_compile", str(settings_file)],
             capture_output=True,
