@@ -29,7 +29,6 @@ uv sync
 
 ### 3. Run example_project
 ```bash
-cd example_project
 uv run python example_project/manage.py migrate
 uv run python example_project/manage.py runserver
 ```
