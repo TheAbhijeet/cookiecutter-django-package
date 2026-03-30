@@ -36,7 +36,10 @@ cookiecutter gh:TheAbhijeet/cookiecutter-django-package
 | `include_admin_templates` | `False` | Include custom Django admin templates |
 | `include_templates` | `False` | Include templates/static folders for frontend assets |
 
-Set up the generated project:
+<img width="772" height="628" alt="image" src="https://github.com/user-attachments/assets/c57d4eec-40a6-49a0-8b84-9ee37f8132e3" />
+
+
+## Set up the generated project:
 
 ```bash
 cd <project_slug>
