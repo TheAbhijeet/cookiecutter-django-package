@@ -26,19 +26,15 @@ cd {{ cookiecutter.project_name }}
 uv sync
 ```
 
-### 3. Install Dev Packages
-```bash
-uv sync --group dev
-```
 
-### 4. Run example_project
+### 3. Run example_project
 ```bash
 cd example_project
 uv run python example_project/manage.py migrate
 uv run python example_project/manage.py runserver
 ```
 
-### 5. Run Tests
+### 4. Run Tests
 ```bash
 uv run pytest
 ```
