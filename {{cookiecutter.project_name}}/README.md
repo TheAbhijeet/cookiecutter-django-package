@@ -9,6 +9,8 @@
 
 ```bash
 pip install {{ cookiecutter.package_name }}
+or 
+uv add {{ cookiecutter.package_name }}
 ```
 
 ## Development Setup
@@ -18,20 +20,13 @@ pip install {{ cookiecutter.package_name }}
 cd {{ cookiecutter.project_name }}
 ```
 
-### 2. Create Virtual Environment
-**Windows (PowerShell):**
-```powershell
-uv sync
-uv sync
-```
+### 2. Install Package
 
-**macOS/Linux:**
 ```bash
 uv sync
-uv sync
 ```
 
-### 3. Install Package
+### 3. Install Dev Packages
 ```bash
 uv sync --group dev
 ```
@@ -39,8 +34,8 @@ uv sync --group dev
 ### 4. Run example_project
 ```bash
 cd example_project
-python manage.py migrate
-python manage.py runserver
+uv run python example_project/manage.py migrate
+uv run python example_project/manage.py runserver
 ```
 
 ### 5. Run Tests
